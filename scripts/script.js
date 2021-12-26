@@ -42,7 +42,22 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection === "scissors" && computerSelection === "paper") {
         return "You Win! Scissors beat Paper";
     }
-    else {
+    else if (playerSelection === computerSelection) {
         return `It's a tie! You both picked ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`;
+    }
+    else {
+        return "You did not provide a correct input!";
+    }
+}
+
+function game() {
+    rounds = 5;
+    for (i = 0; i < rounds; i++) {
+        playerSelection = prompt("Rock, paper, or scissors? ");
+        computerSelection = computerPlay();
+
+        gameResult = playRound(playerSelection, computerSelection);
+
+        console.log(gameResult);
     }
 }
