@@ -52,12 +52,27 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     rounds = 5;
+    winTally = 0;
+    loseTally = 0;
     for (i = 0; i < rounds; i++) {
         playerSelection = prompt("Rock, paper, or scissors? ");
         computerSelection = computerPlay();
 
         gameResult = playRound(playerSelection, computerSelection);
-
         console.log(gameResult);
+
+        if (gameResult.startsWith("You Win")) {
+            winTally++;
+        } else if (gameResult.startsWith("You Lose")) {
+            loseTally++;
+        }
+    }
+
+    if (winTally > loseTally) {
+        console.log(`You win the game! ${winTally} - ${loseTally}`);
+    } else if (winTally === loseTally) {
+        console.log(`You tied! ${winTally} - ${loseTally}`);
+    } else {
+        console.log(`You lost the game! ${winTally} - ${loseTally}`);
     }
 }
