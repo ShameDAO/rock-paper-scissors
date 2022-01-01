@@ -43,7 +43,8 @@ function playRound(playerSelection, computerSelection) {
         return "You Win! Scissors beat Paper";
     }
     else if (playerSelection === computerSelection) {
-        return `It's a tie! You both picked ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`;
+        return `It's a tie! You both picked 
+                ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}`;
     }
     else {
         return "You did not provide a correct input!";
