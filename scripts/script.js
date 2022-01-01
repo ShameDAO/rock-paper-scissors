@@ -77,3 +77,59 @@ function game() {
         console.log(`You lost the game! ${winTally} - ${loseTally}`);
     }
 }
+
+function playRoundScore(playerSelection) {
+    if (roundsPlayed >= rounds) {
+        return `The game has already finished! All ${rounds} rounds have been played.`;
+    }
+    const computerSelection = computerPlay();
+
+    const gameResult = playRound(playerSelection, computerSelection);
+    // console.log(gameResult);
+
+    if (gameResult.startsWith("You Win")) {
+        winTally++;
+    } else if (gameResult.startsWith("You Lose")) {
+        loseTally++;
+    }
+    roundsPlayed++;
+    return gameResult;
+}
+
+const rounds = 5;
+
+const playerBtn = document.querySelectorAll("button");
+const divResults = document.querySelector(".results");
+const pRound = document.createElement("p");
+const pScore = document.createElement("p");
+const pGame = document.createElement("p");
+
+let winTally = 0;
+let loseTally = 0;
+let roundsPlayed = 0;
+
+playerBtn.forEach(btn => {
+
+    btn.addEventListener("click", () => {
+        pRound.textContent = playRoundScore(btn.id, roundsPlayed);
+        pScore.textContent = `Score: ${winTally} - ${loseTally}`;
+
+        if (roundsPlayed >= rounds) {
+
+            if (winTally > loseTally) {
+                pGame.textContent = "You won the game!";
+            } else if (winTally === loseTally) {
+                pGame.textContent = "You tied!";
+            } else {
+                pGame.textContent = "You lost the game!";
+            }
+
+        }
+    });
+
+
+});
+
+divResults.appendChild(pRound);
+divResults.appendChild(pScore);
+divResults.appendChild(pGame);
